@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
 public class NewsAdapter extends ArrayAdapter<News> {
 
     /*
@@ -24,10 +23,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
      * The context is used to inflate the layout file, and the list is the data we want
      * to populate into the lists.
      *
-     * @param context        The current context. Used to inflate the layout file.
-     * @param news  A List of Earthquake objects to display in a list
+     * @param context The current context. Used to inflate the layout file.
+     * @param news    A List of Earthquake objects to display in a list
      */
-    public NewsAdapter (Activity context, ArrayList<News> news) {
+    public NewsAdapter(Activity context, ArrayList<News> news) {
 
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
@@ -40,24 +39,20 @@ public class NewsAdapter extends ArrayAdapter<News> {
     /**
      * Provides a view for an AdapterView (ListView, GridView, etc.)
      *
-     * @param position The position in the list of data that should be displayed in the
-     *                 list item view.
+     * @param position    The position in the list of data that should be displayed in the
+     *                    list item view.
      * @param convertView The recycled view to populate.
-     * @param parent The parent ViewGroup that is used for inflation.
+     * @param parent      The parent ViewGroup that is used for inflation.
      * @return The View for the position in the AdapterView.
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list, parent, false);
         }
-
-        String locationOffset;
-        String primaryLocation;
-
 
         // Get the {@link News} object located at this position in the list
         News currentNews = getItem(position);
@@ -72,25 +67,25 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Find the TextView in the list.xml with the section
         TextView sectionTextView = (TextView) listItemView.findViewById(R.id.section);
 
-        String section =currentNews.getSection();
+        String section = currentNews.getSection();
 
         // set this text on the sectionTextView
         sectionTextView.setText(section);
 
-        // Find the TextView with view ID date
+        // find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
+        String currentDate = currentNews.getDate();
 
-
-        String date = currentNews.getDate();
+        // edit the date string
+        String[] parts = currentDate.split("T");
+        String date = parts[0]; // "yyyy, MM, dd"
 
         // Display the date of the current news in that TextView
         dateView.setText(date);
-
 
         // Return the whole list item layout (containing 3 TextViews)
         // so that it can be shown in the ListView
 
         return listItemView;
     }
-
 }

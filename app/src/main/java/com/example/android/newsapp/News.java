@@ -6,7 +6,6 @@ public class News {
      * Each object has 3 properties: title, section, and date.
      */
 
-
     private String mTitle;
 
     private String mSection;
@@ -23,12 +22,11 @@ public class News {
      * @param vDate is the date
      * */
 
-    public News (String vTitle, String vSection, String vDate, String vUrl)
-    {
+    public News(String vTitle, String vSection, String vDate, String vUrl) {
         mDate = vDate;
         mTitle = vTitle;
         mSection = vSection;
-        mUrl= vUrl;
+        mUrl = vUrl;
     }
 
     /**
@@ -58,7 +56,6 @@ public class News {
     public String getUrl() {
         return mUrl;
     }
-
 }
 
 

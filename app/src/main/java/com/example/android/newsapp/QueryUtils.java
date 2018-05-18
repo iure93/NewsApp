@@ -23,7 +23,9 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
@@ -152,17 +154,18 @@ public final class QueryUtils {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
 
+            JSONObject response = baseJsonResponse.getJSONObject("response");
+
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
-            JSONArray newsArray = baseJsonResponse.getJSONArray("results");
+
+            JSONArray newsArray = response.getJSONArray("results");
 
             // For each news in the newsArray, create an {@link News} object
             for (int i = 0; i < newsArray.length(); i++) {
 
                 // Get a single news at position i within the list of news
                 JSONObject currentNews = newsArray.getJSONObject(i);
-
-                // For a given news, extract the JSONObject associated
 
                 // Extract the value for the key called "webTitle"
                 String title = currentNews.getString("webTitle");
@@ -194,5 +197,4 @@ public final class QueryUtils {
         // Return the list of news
         return newsList;
     }
-
 }
