@@ -153,7 +153,6 @@ public final class QueryUtils {
 
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
-
             JSONObject response = baseJsonResponse.getJSONObject("response");
 
             // Extract the JSONArray associated with the key called "features",
@@ -179,9 +178,15 @@ public final class QueryUtils {
                 // Extract the value for the key called "webUrl"
                 String url = currentNews.getString("webUrl");
 
+                //get author
+                JSONArray tagsArray = currentNews.getJSONArray("tags");
+                JSONObject tag = tagsArray.getJSONObject(0);
+                String author = tag.getString("webTitle");
+
+
                 // Create a new {@link News} object with the title , section, date,
                 // and url from the JSON response.
-                News news = new News(title, section, date, url);
+                News news = new News(title, section, date, url, author);
 
                 // Add the new {@link News} to the list of news.
                 newsList.add(news);

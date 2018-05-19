@@ -64,6 +64,11 @@ public class NewsAdapter extends ArrayAdapter<News> {
         String title = currentNews.getTitle();
         titleTextView.setText(title);
 
+        // Find the TextView in the lis.xml layout with the author
+        TextView authorTextView = (TextView) listItemView.findViewById(R.id.author_text_view);
+        String author = currentNews.getAuthor();
+        authorTextView.setText(author);
+
         // Find the TextView in the list.xml with the section
         TextView sectionTextView = (TextView) listItemView.findViewById(R.id.section);
 

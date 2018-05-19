@@ -12,6 +12,8 @@ public class News {
 
     private String mDate;
 
+    private String mAuthor;
+
     String mUrl;
 
     /*
@@ -22,11 +24,12 @@ public class News {
      * @param vDate is the date
      * */
 
-    public News(String vTitle, String vSection, String vDate, String vUrl) {
+    public News(String vTitle, String vSection, String vDate, String vUrl, String vAuthor) {
         mDate = vDate;
         mTitle = vTitle;
         mSection = vSection;
         mUrl = vUrl;
+        mAuthor = vAuthor;
     }
 
     /**
@@ -55,6 +58,13 @@ public class News {
      */
     public String getUrl() {
         return mUrl;
+    }
+
+    /**
+     * Get the author
+     */
+    public String getAuthor() {
+        return mAuthor;
     }
 }
 
